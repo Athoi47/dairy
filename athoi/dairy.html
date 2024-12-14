@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Diary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #f9f8fc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(198, 65, 231, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-group input[type="text"], .form-group input[type="password"], .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #1a6fcf;
+        }
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <h2>Create Account</h2>
+        <form id="create-account-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create Account">
+            </div>
+        </form>
+        <div id="diary-entry-form" style="display: none;">
+            <h2>Daily Diary Entry</h2>
+            <form>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="day">Day:</label>
+                    <input type="text" id="day" name="day">
+                </div>
+                <div class="form-group">
+                    <label for="entry">Diary Entry:</label>
+                    <textarea id="entry" name="entry"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save Entry">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the login form and create account form
+        const loginForm = document.getElementById('login-form');
+        const createAccountForm = document.getElementById('create-account-form');
+
+        // Get the diary entry form
+        const diaryEntryForm = document.getElementById('diary-entry-form');
+
+        // Create an object to store the usernames and passwords
+        const users = {};
+
+        // Add an event listener to the create account form
+        createAccountForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get the username and password from the form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Store the username and password in the users object
+            users[username] = password;
+
+            // Clear the form fields
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+
+        // Add an event listener to the login form
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get the username and password from the form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the username and password match
+            if (users[username] === password) {
+                // Display the diary entry form
+                diaryEntryForm.style.display
